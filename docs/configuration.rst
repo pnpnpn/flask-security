@@ -31,12 +31,16 @@ Core
 ``SECURITY_EMAIL_SENDER``                Specifies the email address to send
                                          emails as. Defaults to
                                          ``no-reply@localhost``.
-``SECURITY_TOKEN_AUTHENTICATION_KEY``    Specifies the query sting parameter to
+``SECURITY_TOKEN_AUTHENTICATION_KEY``    Specifies the query string parameter to
                                          read when using token authentication.
                                          Defaults to ``auth_token``.
 ``SECURITY_TOKEN_AUTHENTICATION_HEADER`` Specifies the HTTP header to read when
                                          using token authentication. Defaults to
                                          ``Authentication-Token``.
+``SECURITY_TOKEN_MAX_AGE``               Specifies the number of seconds before
+                                         an authentication token expires.
+                                         Defaults to None, meaning the token
+                                         never expires.
 ``SECURITY_DEFAULT_HTTP_AUTH_REALM``     Specifies the default authentication
                                          realm when using basic HTTP auth.
                                          Defaults to ``Login Required``
@@ -159,7 +163,8 @@ Feature Flags
                           option. Defaults to ``False``.
 ``SECURITY_TRACKABLE``    Specifies if Flask-Security should track basic user
                           login statistics. If set to ``True``, ensure your
-                          models have the required fields/attribues. Defaults to
+                          models have the required fields/attribues. Be sure to
+                          use `ProxyFix <http://flask.pocoo.org/docs/0.10/deploying/wsgi-standalone/#proxy-setups>` if you are using a proxy. Defaults to
                           ``False``
 ``SECURITY_PASSWORDLESS`` Specifies if Flask-Security should enable the
                           passwordless login feature. If set to ``True``, users
